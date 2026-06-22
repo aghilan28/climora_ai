@@ -1,0 +1,9 @@
+lib
+coverage
+reports
+test-results
+node_modules
+.cache
+.local
+.config
+pnpm-lock.yaml

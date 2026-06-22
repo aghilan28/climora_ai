@@ -1,0 +1,70 @@
+{
+  "name": "climate-systems-console",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Governance-enforced monorepo foundation for the Climate Systems Console.",
+  "type": "module",
+  "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": ">=20.11.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "prepare": "husky || true",
+    "validate": "eslint . --max-warnings=0 && prettier . --check && tsc -b --pretty false && vitest run --coverage && depcruise --config .dependency-cruiser.cjs . && knip --production --strict --no-progress && node scripts/validate-docs.mjs && node scripts/validate-compliance-matrix.mjs",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "tsc -b --pretty false",
+    "build": "tsc -b --pretty false",
+    "build:turbo": "turbo run build",
+    "test": "vitest run --coverage",
+    "test:unit": "vitest run --config vitest.unit.config.ts",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:architecture": "vitest run --config vitest.architecture.config.ts",
+    "test:e2e": "playwright test --config playwright.config.ts",
+    "coverage": "vitest run --coverage",
+    "arch:validate": "depcruise --config .dependency-cruiser.cjs .",
+    "arch:report": "mkdir -p reports/architecture && depcruise --config .dependency-cruiser.cjs --output-type html . > reports/architecture/dependency-report.html && depcruise --config .dependency-cruiser.cjs --output-type json . > reports/architecture/dependency-report.json",
+    "deps:validate": "knip --production --strict --no-progress && depcruise --config .dependency-cruiser.cjs .",
+    "docs:validate": "node scripts/validate-docs.mjs",
+    "security:audit": "node scripts/security-audit.mjs",
+    "compliance:validate": "node scripts/validate-compliance-matrix.mjs"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs,cjs}": [
+      "eslint --fix --max-warnings=0",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@playwright/test": "^1.52.0",
+    "@secretlint/secretlint-rule-preset-recommend": "^13.0.2",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/node": "^22.15.29",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
+    "@typescript-eslint/parser": "^8.33.1",
+    "@vitest/coverage-v8": "^3.2.1",
+    "dependency-cruiser": "^16.10.4",
+    "eslint": "^9.28.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^9.1.7",
+    "knip": "^5.56.0",
+    "lint-staged": "^15.5.2",
+    "prettier": "^3.5.3",
+    "secretlint": "^13.0.2",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1",
+    "vitest": "^3.2.1"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/shared"
+    },
+    {
+      "path": "./packages/domain-types"
+    },
+    {
+      "path": "./packages/testing"
+    },
+    {
+      "path": "./packages/api-client"
+    },
+    {
+      "path": "./packages/design-system"
+    },
+    {
+      "path": "./packages/visualizations"
+    },
+    {
+      "path": "./services/application-api"
+    },
+    {
+      "path": "./services/domain"
+    },
+    {
+      "path": "./services/knowledge"
+    },
+    {
+      "path": "./services/ingestion"
+    },
+    {
+      "path": "./services/validation"
+    },
+    {
+      "path": "./apps/web"
+    },
+    {
+      "path": "./tests/architecture"
+    }
+  ]
+}

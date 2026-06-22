@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "lib",
+    "tsBuildInfoFile": "lib/tsconfig.tsbuildinfo",
+    "types": ["node", "vitest"]
+  },
+  "include": ["**/*.test.ts"],
+  "exclude": ["fixtures/**", "lib/**"]
+}

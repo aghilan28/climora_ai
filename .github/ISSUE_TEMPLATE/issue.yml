@@ -1,0 +1,24 @@
+name: Governance or Platform Issue
+description: Report a Phase 1 platform, governance, documentation, or tooling issue.
+title: 'chore: '
+labels: ['governance', 'platform']
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the issue and impacted controls.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Provide logs, failing checks, or documentation links.
+    validations:
+      required: true
+  - type: input
+    id: compliance
+    attributes:
+      label: Compliance Matrix Requirement IDs
+      description: List related requirement IDs if known.

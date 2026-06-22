@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "packages/*/src/index.ts",
+    "services/*/src/index.ts",
+    "apps/*/src/index.ts",
+    "scripts/*.mjs"
+  ],
+  "project": ["**/*.{ts,tsx,js,mjs,cjs}"],
+  "ignore": ["tests/architecture/fixtures/**", "**/lib/**", "coverage/**", "reports/**"],
+  "ignoreDependencies": ["@testing-library/dom", "@testing-library/jest-dom"]
+}

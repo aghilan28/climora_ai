@@ -1,0 +1,26 @@
+name: Request for Comments
+description: Propose an architectural or governance change for review.
+title: 'docs: rfc - '
+labels: ['rfc', 'architecture']
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the proposed change.
+    validations:
+      required: true
+  - type: textarea
+    id: constitution
+    attributes:
+      label: Constitution Traceability
+      description: Identify constitutional clauses, ADRs, and compliance requirements.
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks and Alternatives
+      description: Describe risks, mitigations, and alternatives considered.
+    validations:
+      required: true

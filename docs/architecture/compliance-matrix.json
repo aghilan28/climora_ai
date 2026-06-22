@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "1.0.0",
+  "requirements": [
+    {
+      "requirementId": "CSC-ARCH-0001",
+      "description": "Architecture Constitution is binding authority for future implementation decisions.",
+      "owningLayer": "Governance",
+      "verificationMethod": "ADR review and documentation validation",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "docs/adrs/ADR-0001-adoption-of-architecture-constitution.md"
+    },
+    {
+      "requirementId": "CSC-ARCH-0002",
+      "description": "Forbidden cross-layer dependencies fail automatically.",
+      "owningLayer": "Architecture",
+      "verificationMethod": "dependency-cruiser CI validation",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": ".dependency-cruiser.cjs"
+    },
+    {
+      "requirementId": "CSC-ARCH-0003",
+      "description": "Circular dependencies fail automatically.",
+      "owningLayer": "Architecture",
+      "verificationMethod": "dependency-cruiser no-circular rule and architecture tests",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "tests/architecture/architecture-rules.test.ts"
+    },
+    {
+      "requirementId": "CSC-TS-0001",
+      "description": "TypeScript maximum strictness is mandatory across all workspaces.",
+      "owningLayer": "Platform",
+      "verificationMethod": "tsc -b in CI",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "tsconfig.base.json"
+    },
+    {
+      "requirementId": "CSC-CQ-0001",
+      "description": "Linting, formatting, import sorting, unused import detection, and dead-code scanning are enforced.",
+      "owningLayer": "Platform",
+      "verificationMethod": "ESLint, Prettier, and Knip CI jobs",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "eslint.config.mjs"
+    },
+    {
+      "requirementId": "CSC-GOV-0001",
+      "description": "Commit messages follow allowed Conventional Commit types.",
+      "owningLayer": "Governance",
+      "verificationMethod": "commitlint and Husky commit-msg hook",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "commitlint.config.cjs"
+    },
+    {
+      "requirementId": "CSC-TEST-0001",
+      "description": "Unit, integration, e2e, architecture, and coverage test infrastructure exists.",
+      "owningLayer": "Quality",
+      "verificationMethod": "Vitest, Playwright, and coverage CI jobs",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "vitest.config.ts"
+    },
+    {
+      "requirementId": "CSC-CI-0001",
+      "description": "Required GitHub Actions workflows exist with least-privilege permissions and dependency caching.",
+      "owningLayer": "CI/CD",
+      "verificationMethod": "Workflow presence and CI execution",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": ".github/workflows"
+    },
+    {
+      "requirementId": "CSC-SEC-0001",
+      "description": "Security scanning, dependency audit, secret scanning, and lockfile validation are configured.",
+      "owningLayer": "Security",
+      "verificationMethod": "security-scan workflow and SECURITY policy",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "SECURITY.md"
+    },
+    {
+      "requirementId": "CSC-DOC-0001",
+      "description": "Documentation templates and validation exist for ADRs, contracts, ontology, governance, risks, TDDs, PRs, issues, and RFCs.",
+      "owningLayer": "Documentation",
+      "verificationMethod": "docs validation script",
+      "status": "Implemented",
+      "verificationPhase": "Phase 1",
+      "evidenceLink": "scripts/validate-docs.mjs"
+    }
+  ]
+}
