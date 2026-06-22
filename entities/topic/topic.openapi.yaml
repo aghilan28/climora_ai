@@ -1,0 +1,72 @@
+components:
+  schemas:
+    Topic:
+      type: object
+      x-entity: Topic
+      x-entity-id: ONT-004
+      required:
+        - id
+        - name
+        - slug
+        - description
+        - hierarchyLevel
+        - taxonomyPath
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          minLength: 3
+          maxLength: 200
+        slug:
+          type: string
+          pattern: '^[a-z0-9-]+$'
+          example: "climate-drivers"
+        description:
+          type: string
+          minLength: 10
+          maxLength: 2000
+        parentTopicId:
+          type: string
+          format: uuid
+          nullable: true
+        hierarchyLevel:
+          type: integer
+          minimum: 1
+          maximum: 10
+        taxonomyPath:
+          type: string
+          example: "Climate Drivers / Greenhouse Gases / Carbon Dioxide"
+        metadata:
+          $ref: '#/components/schemas/TopicMetadata'
+
+    TopicMetadata:
+      type: object
+      properties:
+        sourceTaxonomy:
+          type: string
+          example: "IPCC AR6 WGI"
+        aliases:
+          type: array
+          items:
+            type: string
+        externalUri:
+          type: string
+          format: uri
+        workingGroup:
+          type: string
+          example: "WGI"
+
+    TopicInput:
+      allOf:
+        - $ref: '#/components/schemas/Topic'
+      required:
+        - name
+        - slug
+        - description
+        - hierarchyLevel
+        - taxonomyPath
+        - metadata

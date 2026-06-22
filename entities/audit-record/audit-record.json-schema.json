@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://climora.ai/schemas/audit-record.json",
+  "title": "AuditRecord",
+  "description": "A log of who changed what, when, and why.",
+  "type": "object",
+  "required": ["id", "entityId", "action", "actor", "timestamp", "reason", "metadata"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "entityId": { "type": "string", "format": "uuid" },
+    "action": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "actor": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "reason": { "type": "string", "minLength": 5, "maxLength": 1000 },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "source": { "type": "string" },
+        "correlationId": { "type": "string" },
+        "previousState": { "type": "object" },
+        "newState": { "type": "object" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

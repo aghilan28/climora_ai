@@ -1,0 +1,88 @@
+components:
+  schemas:
+    Citation:
+      type: object
+      x-entity: Citation
+      x-entity-id: ONT-003
+      required:
+        - id
+        - title
+        - authors
+        - year
+        - citationType
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          minLength: 5
+          maxLength: 500
+        authors:
+          type: array
+          items:
+            type: string
+            minLength: 2
+          minItems: 1
+        year:
+          type: integer
+          minimum: 1800
+          maximum: 2100
+        journal:
+          type: string
+          nullable: true
+        publisher:
+          type: string
+          nullable: true
+        doi:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        url:
+          type: string
+          format: uri
+          nullable: true
+        citationType:
+          $ref: '../../openapi/components.yaml#/components/schemas/CitationType'
+        metadata:
+          $ref: '#/components/schemas/CitationMetadata'
+
+    CitationMetadata:
+      type: object
+      properties:
+        doi:
+          type: string
+        isbn:
+          type: string
+        url:
+          type: string
+          format: uri
+        volume:
+          type: string
+        issue:
+          type: string
+        pages:
+          type: string
+        publisher:
+          type: string
+        abstract:
+          type: string
+          maxLength: 5000
+        keywords:
+          type: array
+          items:
+            type: string
+
+    CitationInput:
+      allOf:
+        - $ref: '#/components/schemas/Citation'
+      required:
+        - title
+        - authors
+        - year
+        - citationType
+        - metadata

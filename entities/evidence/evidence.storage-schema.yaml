@@ -1,0 +1,41 @@
+entity: Evidence
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: true
+lineageMandatory: true
+
+primaryKey:
+  name: pk_evidence
+  columns: [id]
+
+foreignKeys:
+  - name: fk_evidence_finding
+    columns: [finding_id]
+    references: finding(id)
+    onDelete: RESTRICT
+  - name: fk_evidence_provenance
+    columns: [provenance_id]
+    references: provenance_record(id)
+    onDelete: RESTRICT
+
+columns:
+  id: uuid
+  type: enum(EvidenceType)
+  description: text
+  finding_id: uuid
+  provenance_id: uuid
+  source_type: enum(SourceType)
+  evidence_strength: enum(EvidenceStrength)
+  validation_status: enum(ValidationStatus)
+  metadata: jsonb
+
+joinTables:
+  - name: evidence_citation
+    columns: [evidence_id, citation_id]
+    primaryKey: [evidence_id, citation_id]
+
+retention:
+  policy: forever
+  reason: Evidence records are part of the immutable audit trail of scientific claims.

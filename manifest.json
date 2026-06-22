@@ -1,0 +1,38 @@
+{
+  "name": "Climora AI — Phase 2 Ontology Foundation",
+  "version": "1.0.0",
+  "date": "2026-06-22",
+  "repository": "https://github.com/aghilan28/climora_ai",
+  "phase": "Phase 2 — Core Knowledge Model Engineering Program",
+  "architectureAuthority": "Knowledge Systems Architect",
+  "totalFiles": 111,
+  "directories": {
+    "entities": "9 entities × 7 schema formats + 9 documentation files",
+    "enums": "8 enum files (7 vocabularies + index)",
+    "relationships": "3 relationship contract files",
+    "taxonomy": "3 taxonomy files",
+    "contracts": "3 storage/versioning/retention contract files",
+    "validation": "2 validation contract files",
+    "governance": "2 governance policy files",
+    "openapi": "2 OpenAPI contract files",
+    "json-schema": "1 catalog file",
+    "graph-schema": "1 catalog file",
+    "documentation": "9 entity documentation files",
+    "audits": "6 certification audit files"
+  },
+  "exitGateStatus": {
+    "allEntitiesDefined": true,
+    "allEnumsDefined": true,
+    "allRelationshipsDefined": true,
+    "allValidationContractsDefined": true,
+    "allGraphContractsDefined": true,
+    "allStorageContractsDefined": true,
+    "allApiContractsDefined": true,
+    "allMachineReadableFormatsGenerated": true,
+    "allOntologyDocumentationCompleted": true,
+    "allGovernanceDocumentsCompleted": true,
+    "allCertificationAuditsPassed": true,
+    "scientificReviewerApproval": false,
+    "architectureBoardApproval": false
+  }
+}

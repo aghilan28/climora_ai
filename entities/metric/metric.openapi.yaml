@@ -1,0 +1,79 @@
+components:
+  schemas:
+    Metric:
+      type: object
+      x-entity: Metric
+      x-entity-id: ONT-005
+      required:
+        - id
+        - findingId
+        - name
+        - value
+        - unit
+        - period
+        - dataNature
+        - geographicScope
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        findingId:
+          type: string
+          format: uuid
+        name:
+          type: string
+          minLength: 3
+          maxLength: 200
+        value:
+          type: number
+        unit:
+          type: string
+          maxLength: 50
+          example: "°C"
+        period:
+          type: string
+          example: "2011-2020"
+        dataNature:
+          $ref: '../../openapi/components.yaml#/components/schemas/DataNature'
+        baseline:
+          type: string
+          nullable: true
+          example: "1850-1900"
+        geographicScope:
+          type: string
+          maxLength: 200
+          example: "Global"
+        metadata:
+          $ref: '#/components/schemas/MetricMetadata'
+
+    MetricMetadata:
+      type: object
+      properties:
+        uncertaintyRange:
+          type: string
+          example: "1.0 to 1.3"
+        statisticalMethod:
+          type: string
+        dataSource:
+          type: string
+        scenario:
+          type: string
+        temporalResolution:
+          type: string
+        spatialResolution:
+          type: string
+
+    MetricInput:
+      allOf:
+        - $ref: '#/components/schemas/Metric'
+      required:
+        - findingId
+        - name
+        - value
+        - unit
+        - period
+        - dataNature
+        - geographicScope
+        - metadata

@@ -1,0 +1,61 @@
+components:
+  schemas:
+    VersionRecord:
+      type: object
+      x-entity: VersionRecord
+      x-entity-id: ONT-013
+      required:
+        - id
+        - entityType
+        - entityId
+        - versionNumber
+        - changeReason
+        - createdBy
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        entityType:
+          type: string
+          maxLength: 100
+          example: "Finding"
+        entityId:
+          type: string
+          format: uuid
+        versionNumber:
+          type: string
+          pattern: '^\d+\.\d+\.\d+$'
+          example: "1.1.0"
+        previousVersion:
+          type: string
+          pattern: '^\d+\.\d+\.\d+$'
+          nullable: true
+        changeReason:
+          type: string
+          minLength: 10
+          maxLength: 2000
+        createdBy:
+          type: string
+          maxLength: 200
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        payloadHash:
+          type: string
+          nullable: true
+        payloadSnapshot:
+          type: object
+          nullable: true
+
+    VersionRecordInput:
+      allOf:
+        - $ref: '#/components/schemas/VersionRecord'
+      required:
+        - entityType
+        - entityId
+        - versionNumber
+        - changeReason
+        - createdBy

@@ -1,0 +1,74 @@
+components:
+  schemas:
+    DissentRecord:
+      type: object
+      x-entity: DissentRecord
+      x-entity-id: ONT-017
+      required:
+        - id
+        - findingId
+        - statement
+        - confidenceRating
+        - citationIds
+        - evidenceIds
+        - status
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        findingId:
+          type: string
+          format: uuid
+        statement:
+          type: string
+          minLength: 20
+          maxLength: 5000
+        confidenceRating:
+          $ref: '../../openapi/components.yaml#/components/schemas/ConfidenceLevel'
+        citationIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+        evidenceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+        status:
+          $ref: '../../openapi/components.yaml#/components/schemas/DissentStatus'
+        metadata:
+          $ref: '#/components/schemas/DissentRecordMetadata'
+
+    DissentRecordMetadata:
+      type: object
+      properties:
+        registeredAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+        resolutionSummary:
+          type: string
+          maxLength: 2000
+        reviewers:
+          type: array
+          items:
+            type: string
+
+    DissentRecordInput:
+      allOf:
+        - $ref: '#/components/schemas/DissentRecord'
+      required:
+        - findingId
+        - statement
+        - confidenceRating
+        - citationIds
+        - evidenceIds
+        - status
+        - metadata

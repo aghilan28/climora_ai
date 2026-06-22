@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://climora.ai/schemas/topic.json",
+  "title": "Topic",
+  "description": "A classifiable subject in the climate taxonomy.",
+  "type": "object",
+  "required": ["id", "name", "slug", "description", "hierarchyLevel", "taxonomyPath", "metadata"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "name": { "type": "string", "minLength": 3, "maxLength": 200 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "description": { "type": "string", "minLength": 10, "maxLength": 2000 },
+    "parentTopicId": { "type": "string", "format": "uuid" },
+    "hierarchyLevel": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "taxonomyPath": { "type": "string", "minLength": 3, "maxLength": 500 },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "sourceTaxonomy": { "type": "string" },
+        "aliases": { "type": "array", "items": { "type": "string" } },
+        "externalUri": { "type": "string", "format": "uri" },
+        "workingGroup": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": false
+}

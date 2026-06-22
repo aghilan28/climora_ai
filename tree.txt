@@ -1,0 +1,256 @@
+Folder PATH listing for volume OS
+Volume serial number is 00000058 368E:D4C2
+C:.
+|   .dependency-cruiser.cjs
+|   .editorconfig
+|   .prettierignore
+|   .prettierrc.json
+|   .secretlintignore
+|   .secretlintrc.json
+|   commitlint.config.cjs
+|   DIRECTORY_STRUCTURE.md
+|   eslint.config.mjs
+|   knip.json
+|   package.json
+|   playwright.config.ts
+|   pnpm-lock.yaml
+|   pnpm-workspace.yaml
+|   READ ME.txt
+|   README.md
+|   SECURITY.md
+|   tree.txt
+|   tsconfig.base.json
+|   tsconfig.eslint.json
+|   tsconfig.json
+|   turbo.json
+|   vitest.architecture.config.ts
+|   vitest.config.ts
+|   vitest.integration.config.ts
+|   vitest.unit.config.ts
+|   
++---.github
+|   |   pull_request_template.md
+|   |   README.md
+|   |   
+|   +---ISSUE_TEMPLATE
+|   |       issue.yml
+|   |       rfc.yml
+|   |       
+|   \---workflows
+|           architecture-validation.yml
+|           build.yml
+|           coverage.yml
+|           dependency-validation.yml
+|           documentation-validation.yml
+|           lint.yml
+|           security-scan.yml
+|           test.yml
+|           typecheck.yml
+|           
++---.husky
+|   |   commit-msg
+|   |   pre-commit
+|   |   
+|   \---_
+|           husky.sh
+|           
++---apps
+|   |   README.md
+|   |   
+|   \---web
+|       |   package.json
+|       |   README.md
+|       |   tsconfig.json
+|       |   
+|       \---src
+|               index.ts
+|               
++---docs
+|   |   README.md
+|   |   
+|   +---adrs
+|   |       ADR-0001-adoption-of-architecture-constitution.md
+|   |       ADR-TEMPLATE.md
+|   |       README.md
+|   |       
+|   +---api
+|   |       README.md
+|   |       
+|   +---architecture
+|   |       compliance-matrix.json
+|   |       README.md
+|   |       TECHNICAL-DESIGN-DOCUMENT-TEMPLATE.md
+|   |       
+|   +---contracts
+|   |       API-CONTRACT-TEMPLATE.md
+|   |       README.md
+|   |       
+|   +---governance
+|   |       ARCHITECTURE-REVIEW-GUIDE.md
+|   |       CODE-REVIEW-GUIDE.md
+|   |       CONTRIBUTING.md
+|   |       GOVERNANCE-TEMPLATE.md
+|   |       README.md
+|   |       RISK-REGISTER-TEMPLATE.md
+|   |       
+|   \---ontology
+|           ONTOLOGY-ENTITY-TEMPLATE.md
+|           README.md
+|           
++---infrastructure
+|   |   README.md
+|   |   
+|   +---ci
+|   |       README.md
+|   |       
+|   +---docker
+|   |       README.md
+|   |       
+|   +---kubernetes
+|   |       README.md
+|   |       
+|   \---monitoring
+|           README.md
+|           
++---packages
+|   |   README.md
+|   |   
+|   +---api-client
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---design-system
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---domain-types
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---shared
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---testing
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   \---visualizations
+|       |   package.json
+|       |   README.md
+|       |   tsconfig.json
+|       |   
+|       \---src
+|               index.ts
+|               
++---scripts
+|       README.md
+|       security-audit.mjs
+|       validate-compliance-matrix.mjs
+|       validate-docs.mjs
+|       
++---services
+|   |   README.md
+|   |   
+|   +---application-api
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---domain
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---ingestion
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   +---knowledge
+|   |   |   package.json
+|   |   |   README.md
+|   |   |   tsconfig.json
+|   |   |   
+|   |   \---src
+|   |           index.ts
+|   |           
+|   \---validation
+|       |   package.json
+|       |   README.md
+|       |   tsconfig.json
+|       |   
+|       \---src
+|               index.ts
+|               
+\---tests
+    |   README.md
+    |   
+    +---architecture
+    |   |   architecture-rules.test.ts
+    |   |   README.md
+    |   |   tsconfig.json
+    |   |   
+    |   +---fixture-configs
+    |   |       circular.cjs
+    |   |       illegal-domain-ui.cjs
+    |   |       illegal-knowledge-ui.cjs
+    |   |       valid.cjs
+    |   |       
+    |   \---fixtures
+    |       +---circular
+    |       |       a.ts
+    |       |       b.ts
+    |       |       
+    |       +---illegal-domain-ui
+    |       |       domain.ts
+    |       |       ui.ts
+    |       |       
+    |       +---illegal-knowledge-ui
+    |       |       knowledge.ts
+    |       |       ui.ts
+    |       |       
+    |       \---valid
+    |               application.ts
+    |               domain.ts
+    |               
+    +---e2e
+    |       foundation.spec.ts
+    |       README.md
+    |       
+    +---integration
+    |       README.md
+    |       
+    \---unit
+            platform-foundation.test.ts
+            README.md
+            

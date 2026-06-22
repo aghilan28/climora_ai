@@ -1,0 +1,128 @@
+openapi: 3.1.0
+info:
+  title: Climora AI Ontology API Components
+  description: Reusable OpenAPI schemas for the Phase 2 scientific ontology foundation.
+  version: "1.0.0"
+
+components:
+  schemas:
+    # Enums
+    ConfidenceLevel:
+      type: string
+      enum: [VeryLow, Low, Medium, High, VeryHigh]
+      x-ontology-enum: true
+
+    LikelihoodLevel:
+      type: string
+      enum:
+        [ExceptionallyUnlikely, VeryUnlikely, Unlikely, AboutAsLikelyAsNot, Likely, VeryLikely, VirtuallyCertain]
+      x-ontology-enum: true
+
+    DataNature:
+      type: string
+      enum: [Observed, Modeled, Projected, Derived]
+      x-ontology-enum: true
+
+    EvidenceType:
+      type: string
+      enum: [Observation, Experiment, Model, Assessment, MetaAnalysis, Dataset, Simulation]
+      x-ontology-enum: true
+
+    CitationType:
+      type: string
+      enum: [Journal, Book, Report, Dataset, GovernmentDocument, ConferencePaper]
+      x-ontology-enum: true
+
+    ValidationStatus:
+      type: string
+      enum: [Pending, Validated, Rejected, Superseded, Archived]
+      x-ontology-enum: true
+
+    RelationshipType:
+      type: string
+      enum: [SUPPORTED_BY, CITES, BELONGS_TO, SUPERSEDES, CONTRASTS_WITH, RELATES_TO, QUANTIFIES]
+      x-ontology-enum: true
+
+    EvidenceStrength:
+      type: string
+      enum: [Weak, Moderate, Strong, Conclusive]
+      x-ontology-enum: true
+
+    SourceType:
+      type: string
+      enum: [InSitu, RemoteSensing, Proxy, Reanalysis, Survey]
+      x-ontology-enum: true
+
+    DissentStatus:
+      type: string
+      enum: [Active, Resolved, Superseded, Withdrawn]
+      x-ontology-enum: true
+
+    # Entities (referenced from entity OpenAPI files)
+    Finding:
+      $ref: '../entities/finding/finding.openapi.yaml#/components/schemas/Finding'
+
+    FindingInput:
+      $ref: '../entities/finding/finding.openapi.yaml#/components/schemas/FindingInput'
+
+    Evidence:
+      $ref: '../entities/evidence/evidence.openapi.yaml#/components/schemas/Evidence'
+
+    EvidenceInput:
+      $ref: '../entities/evidence/evidence.openapi.yaml#/components/schemas/EvidenceInput'
+
+    Citation:
+      $ref: '../entities/citation/citation.openapi.yaml#/components/schemas/Citation'
+
+    CitationInput:
+      $ref: '../entities/citation/citation.openapi.yaml#/components/schemas/CitationInput'
+
+    Topic:
+      $ref: '../entities/topic/topic.openapi.yaml#/components/schemas/Topic'
+
+    TopicInput:
+      $ref: '../entities/topic/topic.openapi.yaml#/components/schemas/TopicInput'
+
+    Metric:
+      $ref: '../entities/metric/metric.openapi.yaml#/components/schemas/Metric'
+
+    MetricInput:
+      $ref: '../entities/metric/metric.openapi.yaml#/components/schemas/MetricInput'
+
+    DissentRecord:
+      $ref: '../entities/dissent-record/dissent-record.openapi.yaml#/components/schemas/DissentRecord'
+
+    DissentRecordInput:
+      $ref: '../entities/dissent-record/dissent-record.openapi.yaml#/components/schemas/DissentRecordInput'
+
+    VersionRecord:
+      $ref: '../entities/version-record/version-record.openapi.yaml#/components/schemas/VersionRecord'
+
+    VersionRecordInput:
+      $ref: '../entities/version-record/version-record.openapi.yaml#/components/schemas/VersionRecordInput'
+
+    ProvenanceRecord:
+      $ref: '../entities/provenance-record/provenance-record.openapi.yaml#/components/schemas/ProvenanceRecord'
+
+    ProvenanceRecordInput:
+      $ref: '../entities/provenance-record/provenance-record.openapi.yaml#/components/schemas/ProvenanceRecordInput'
+
+    AuditRecord:
+      $ref: '../entities/audit-record/audit-record.openapi.yaml#/components/schemas/AuditRecord'
+
+    AuditRecordInput:
+      $ref: '../entities/audit-record/audit-record.openapi.yaml#/components/schemas/AuditRecordInput'
+
+    # Common error model
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: object

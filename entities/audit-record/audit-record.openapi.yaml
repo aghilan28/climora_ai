@@ -1,0 +1,62 @@
+components:
+  schemas:
+    AuditRecord:
+      type: object
+      x-entity: AuditRecord
+      x-entity-id: ONT-015
+      required:
+        - id
+        - entityId
+        - action
+        - actor
+        - timestamp
+        - reason
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        entityId:
+          type: string
+          format: uuid
+        action:
+          type: string
+          maxLength: 200
+          example: "CREATE"
+        actor:
+          type: string
+          maxLength: 200
+          example: "curator@climora.ai"
+        timestamp:
+          type: string
+          format: date-time
+          readOnly: true
+        reason:
+          type: string
+          minLength: 5
+          maxLength: 1000
+        metadata:
+          $ref: '#/components/schemas/AuditRecordMetadata'
+
+    AuditRecordMetadata:
+      type: object
+      properties:
+        source:
+          type: string
+        correlationId:
+          type: string
+        previousState:
+          type: object
+        newState:
+          type: object
+
+    AuditRecordInput:
+      allOf:
+        - $ref: '#/components/schemas/AuditRecord'
+      required:
+        - entityId
+        - action
+        - actor
+        - reason
+        - metadata

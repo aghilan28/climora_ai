@@ -1,0 +1,33 @@
+entity: Citation
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: true
+lineageMandatory: false
+
+primaryKey:
+  name: pk_citation
+  columns: [id]
+
+uniqueConstraints:
+  - name: uq_citation_doi
+    columns: [doi]
+    where: "doi IS NOT NULL"
+
+columns:
+  id: uuid
+  title: varchar(500)
+  authors: jsonb
+  year: integer
+  journal: varchar(500) nullable
+  publisher: varchar(500) nullable
+  doi: varchar(255) nullable
+  isbn: varchar(50) nullable
+  url: varchar(2048) nullable
+  citation_type: enum(CitationType)
+  metadata: jsonb
+
+retention:
+  policy: forever
+  reason: Citations are immutable reference records.

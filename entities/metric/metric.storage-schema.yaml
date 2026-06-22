@@ -1,0 +1,33 @@
+entity: Metric
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: true
+lineageMandatory: true
+
+primaryKey:
+  name: pk_metric
+  columns: [id]
+
+foreignKeys:
+  - name: fk_metric_finding
+    columns: [finding_id]
+    references: finding(id)
+    onDelete: RESTRICT
+
+columns:
+  id: uuid
+  finding_id: uuid
+  name: varchar(200)
+  value: double precision
+  unit: varchar(50)
+  period: varchar(100)
+  data_nature: enum(DataNature)
+  baseline: varchar(100) nullable
+  geographic_scope: varchar(200)
+  metadata: jsonb
+
+retention:
+  policy: forever
+  reason: Metrics are part of the scientific record.

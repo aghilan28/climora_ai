@@ -1,0 +1,57 @@
+entity: Evidence
+nodeLabel: Evidence
+nodeIdentifier: id
+entityId: ONT-002
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  type:
+    type: string
+    graphType: enum
+    enum: [Observation, Experiment, Model, Assessment, MetaAnalysis, Dataset, Simulation]
+    index: true
+  description:
+    type: string
+    graphType: text
+    index: fulltext
+  evidenceStrength:
+    type: string
+    graphType: enum
+    enum: [Weak, Moderate, Strong, Conclusive]
+    index: true
+  validationStatus:
+    type: string
+    graphType: enum
+    enum: [Pending, Validated, Rejected, Superseded, Archived]
+    index: true
+  sourceType:
+    type: string
+    graphType: enum
+    enum: [InSitu, RemoteSensing, Proxy, Reanalysis, Survey]
+
+relationships:
+  SUPPORTS:
+    target: Finding
+    cardinality: N:1
+    direction: OUTGOING
+    required: true
+  CITES:
+    target: Citation
+    cardinality: 1:N
+    direction: OUTGOING
+    required: true
+  HAS_PROVENANCE:
+    target: ProvenanceRecord
+    cardinality: 1:1
+    direction: OUTGOING
+    required: true
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: description

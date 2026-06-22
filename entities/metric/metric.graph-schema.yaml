@@ -1,0 +1,56 @@
+entity: Metric
+nodeLabel: Metric
+nodeIdentifier: id
+entityId: ONT-005
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  name:
+    type: string
+    graphType: string
+    index: true
+  value:
+    type: number
+    graphType: float
+  unit:
+    type: string
+    graphType: string
+  period:
+    type: string
+    graphType: string
+    index: true
+  dataNature:
+    type: string
+    graphType: enum
+    enum: [Observed, Modeled, Projected, Derived]
+    index: true
+  geographicScope:
+    type: string
+    graphType: string
+    index: true
+  baseline:
+    type: string
+    graphType: string
+
+relationships:
+  QUANTIFIES:
+    target: Finding
+    cardinality: N:1
+    direction: OUTGOING
+    required: true
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: value
+  - type: exists
+    property: unit
+
+indexes:
+  - type: range
+    properties: [value, period]

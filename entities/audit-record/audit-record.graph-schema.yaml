@@ -1,0 +1,47 @@
+entity: AuditRecord
+nodeLabel: AuditRecord
+nodeIdentifier: id
+entityId: ONT-015
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  entityId:
+    type: string
+    graphType: uuid
+    index: true
+  action:
+    type: string
+    graphType: string
+    index: true
+  actor:
+    type: string
+    graphType: string
+    index: true
+  timestamp:
+    type: string
+    graphType: datetime
+    index: true
+  reason:
+    type: string
+    graphType: text
+
+relationships:
+  AUDITS:
+    target: "*"
+    cardinality: N:1
+    direction: OUTGOING
+    required: true
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: action
+
+indexes:
+  - type: range
+    properties: [timestamp, action, actor]

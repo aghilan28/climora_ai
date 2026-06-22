@@ -1,0 +1,23 @@
+entity: ProvenanceRecord
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: true
+lineageMandatory: true
+
+primaryKey:
+  name: pk_provenance_record
+  columns: [id]
+
+columns:
+  id: uuid
+  origin_source: varchar(500)
+  transformation_history: jsonb
+  validation_history: jsonb
+  storage_history: jsonb
+  audit_history: jsonb
+
+retention:
+  policy: forever
+  reason: Provenance records ensure long-term traceability of data origins.

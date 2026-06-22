@@ -1,0 +1,198 @@
+taxonomy:
+  name: "Climora Climate Taxonomy"
+  version: "1.0.0"
+  source: "IPCC AR6 WGI, WGII, WGIII; IPCC Special Reports"
+
+  levels:
+    - level: 1
+      label: "Domain"
+    - level: 2
+      label: "Subdomain"
+    - level: 3
+      label: "Topic"
+
+  tree:
+    - id: "T1"
+      name: "Scientific Foundations"
+      level: 1
+      children:
+        - id: "T1.1"
+          name: "Earth System Science"
+          level: 2
+          children:
+            - id: "T1.1.1"
+              name: "Atmosphere"
+              level: 3
+            - id: "T1.1.2"
+              name: "Oceans"
+              level: 3
+            - id: "T1.1.3"
+              name: "Cryosphere"
+              level: 3
+            - id: "T1.1.4"
+              name: "Biosphere"
+              level: 3
+        - id: "T1.2"
+          name: "Climate Observations"
+          level: 2
+          children:
+            - id: "T1.2.1"
+              name: "Temperature Records"
+              level: 3
+            - id: "T1.2.2"
+              name: "Precipitation Records"
+              level: 3
+            - id: "T1.2.3"
+              name: "Sea Level Observations"
+              level: 3
+
+    - id: "T2"
+      name: "Climate Drivers"
+      level: 1
+      children:
+        - id: "T2.1"
+          name: "Greenhouse Gases"
+          level: 2
+          children:
+            - id: "T2.1.1"
+              name: "Carbon Dioxide"
+              level: 3
+            - id: "T2.1.2"
+              name: "Methane"
+              level: 3
+            - id: "T2.1.3"
+              name: "Nitrous Oxide"
+              level: 3
+        - id: "T2.2"
+          name: "Radiative Forcing"
+          level: 2
+          children:
+            - id: "T2.2.1"
+              name: "Solar Forcing"
+              level: 3
+            - id: "T2.2.2"
+              name: "Aerosol Forcing"
+              level: 3
+            - id: "T2.2.3"
+              name: "Cloud Feedback"
+              level: 3
+        - id: "T2.3"
+          name: "Aerosols"
+          level: 2
+
+    - id: "T3"
+      name: "Detection and Attribution"
+      level: 1
+      children:
+        - id: "T3.1"
+          name: "Temperature Attribution"
+          level: 2
+        - id: "T3.2"
+          name: "Extreme Event Attribution"
+          level: 2
+        - id: "T3.3"
+          name: "Regional Attribution"
+          level: 2
+
+    - id: "T4"
+      name: "Earth System Risk"
+      level: 1
+      children:
+        - id: "T4.1"
+          name: "Hazards"
+          level: 2
+          children:
+            - id: "T4.1.1"
+              name: "Heat Extremes"
+              level: 3
+            - id: "T4.1.2"
+              name: "Drought"
+              level: 3
+            - id: "T4.1.3"
+              name: "Flooding"
+              level: 3
+        - id: "T4.2"
+          name: "Impacts"
+          level: 2
+          children:
+            - id: "T4.2.1"
+              name: "Ecosystems"
+              level: 3
+            - id: "T4.2.2"
+              name: "Human Health"
+              level: 3
+            - id: "T4.2.3"
+              name: "Food Security"
+              level: 3
+        - id: "T4.3"
+          name: "Vulnerability and Exposure"
+          level: 2
+
+    - id: "T5"
+      name: "Future Pathways"
+      level: 1
+      children:
+        - id: "T5.1"
+          name: "Scenarios"
+          level: 2
+          children:
+            - id: "T5.1.1"
+              name: "SSP1"
+              level: 3
+            - id: "T5.1.2"
+              name: "SSP2"
+              level: 3
+            - id: "T5.1.3"
+              name: "SSP3"
+              level: 3
+            - id: "T5.1.4"
+              name: "SSP5"
+              level: 3
+        - id: "T5.2"
+          name: "Projections"
+          level: 2
+          children:
+            - id: "T5.2.1"
+              name: "Near Term"
+              level: 3
+            - id: "T5.2.2"
+              name: "Mid Term"
+              level: 3
+            - id: "T5.2.3"
+              name: "Long Term"
+              level: 3
+
+    - id: "T6"
+      name: "Responses"
+      level: 1
+      children:
+        - id: "T6.1"
+          name: "Mitigation"
+          level: 2
+          children:
+            - id: "T6.1.1"
+              name: "Energy Transition"
+              level: 3
+            - id: "T6.1.2"
+              name: "Carbon Dioxide Removal"
+              level: 3
+        - id: "T6.2"
+          name: "Adaptation"
+          level: 2
+          children:
+            - id: "T6.2.1"
+              name: "Infrastructure Resilience"
+              level: 3
+            - id: "T6.2.2"
+              name: "Ecosystem Adaptation"
+              level: 3
+        - id: "T6.3"
+          name: "Policy"
+          level: 2
+          children:
+            - id: "T6.3.1"
+              name: "International Agreements"
+              level: 3
+            - id: "T6.3.2"
+              name: "National Policies"
+              level: 3

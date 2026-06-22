@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://climora.ai/schemas/evidence.json",
+  "title": "Evidence",
+  "description": "The empirical or model-based basis for a scientific finding.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "description",
+    "findingId",
+    "citationIds",
+    "provenanceId",
+    "sourceType",
+    "evidenceStrength",
+    "validationStatus",
+    "metadata"
+  ],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "type": {
+      "type": "string",
+      "enum": ["Observation", "Experiment", "Model", "Assessment", "MetaAnalysis", "Dataset", "Simulation"]
+    },
+    "description": { "type": "string", "minLength": 20, "maxLength": 3000 },
+    "findingId": { "type": "string", "format": "uuid" },
+    "citationIds": {
+      "type": "array",
+      "items": { "type": "string", "format": "uuid" },
+      "minItems": 1
+    },
+    "provenanceId": { "type": "string", "format": "uuid" },
+    "sourceType": {
+      "type": "string",
+      "enum": ["InSitu", "RemoteSensing", "Proxy", "Reanalysis", "Survey"]
+    },
+    "evidenceStrength": {
+      "type": "string",
+      "enum": ["Weak", "Moderate", "Strong", "Conclusive"]
+    },
+    "validationStatus": {
+      "type": "string",
+      "enum": ["Pending", "Validated", "Rejected", "Superseded", "Archived"]
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "geographicScope": { "type": "string" },
+        "temporalCoverage": { "type": "string" },
+        "instrument": { "type": "string" },
+        "processingMethod": { "type": "string" },
+        "qualityFlags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "additionalProperties": false
+}

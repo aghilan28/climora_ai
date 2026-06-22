@@ -1,0 +1,68 @@
+components:
+  schemas:
+    ProvenanceRecord:
+      type: object
+      x-entity: ProvenanceRecord
+      x-entity-id: ONT-016
+      required:
+        - id
+        - originSource
+        - transformationHistory
+        - validationHistory
+        - storageHistory
+        - auditHistory
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        originSource:
+          type: string
+          minLength: 5
+          maxLength: 500
+          example: "HadCRUT5 v5.0.1.0 via CEDA"
+        transformationHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProvenanceEvent'
+        validationHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProvenanceEvent'
+        storageHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProvenanceEvent'
+        auditHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProvenanceEvent'
+
+    ProvenanceEvent:
+      type: object
+      required:
+        - action
+        - actor
+        - timestamp
+      properties:
+        action:
+          type: string
+          maxLength: 200
+        actor:
+          type: string
+          maxLength: 200
+        timestamp:
+          type: string
+          format: date-time
+        details:
+          type: object
+
+    ProvenanceRecordInput:
+      allOf:
+        - $ref: '#/components/schemas/ProvenanceRecord'
+      required:
+        - originSource
+        - transformationHistory
+        - validationHistory
+        - storageHistory
+        - auditHistory

@@ -1,0 +1,38 @@
+entity: DissentRecord
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: true
+auditMandatory: true
+lineageMandatory: true
+
+primaryKey:
+  name: pk_dissent_record
+  columns: [id]
+
+foreignKeys:
+  - name: fk_dissent_finding
+    columns: [finding_id]
+    references: finding(id)
+    onDelete: RESTRICT
+
+columns:
+  id: uuid
+  finding_id: uuid
+  statement: text
+  confidence_rating: enum(ConfidenceLevel)
+  status: enum(DissentStatus)
+  version: varchar(20)
+  metadata: jsonb
+
+joinTables:
+  - name: dissent_record_citation
+    columns: [dissent_record_id, citation_id]
+    primaryKey: [dissent_record_id, citation_id]
+  - name: dissent_record_evidence
+    columns: [dissent_record_id, evidence_id]
+    primaryKey: [dissent_record_id, evidence_id]
+
+retention:
+  policy: forever
+  reason: Dissent records are an essential part of the scientific audit trail.

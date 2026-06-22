@@ -1,0 +1,31 @@
+entity: VersionRecord
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: false
+lineageMandatory: false
+
+primaryKey:
+  name: pk_version_record
+  columns: [id]
+
+uniqueConstraints:
+  - name: uq_version_entity_version
+    columns: [entity_id, entity_type, version_number]
+
+columns:
+  id: uuid
+  entity_type: varchar(100)
+  entity_id: uuid
+  version_number: varchar(20)
+  previous_version: varchar(20) nullable
+  change_reason: text
+  created_by: varchar(200)
+  created_at: timestamptz
+  payload_hash: varchar(128) nullable
+  payload_snapshot: jsonb nullable
+
+retention:
+  policy: forever
+  reason: Version records are the immutable history of the knowledge system.

@@ -1,0 +1,71 @@
+entity: Finding
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: true
+auditMandatory: true
+lineageMandatory: true
+
+primaryKey:
+  name: pk_finding
+  columns: [id]
+
+uniqueConstraints:
+  - name: uq_finding_id_version
+    columns: [id, version]
+
+foreignKeys:
+  - name: fk_finding_supersedes
+    columns: [supersedes]
+    references: finding(id)
+    onDelete: RESTRICT
+
+requiredColumns:
+  - id
+  - statement
+  - summary
+  - confidence_rating
+  - likelihood_rating
+  - data_nature
+  - baseline_period
+  - version
+  - created_at
+  - updated_at
+  - metadata
+
+columns:
+  id: uuid
+  statement: text
+  summary: text
+  confidence_rating: enum(ConfidenceLevel)
+  likelihood_rating: enum(LikelihoodLevel)
+  data_nature: enum(DataNature)
+  baseline_period: varchar(50)
+  version: varchar(20)
+  supersedes: uuid nullable
+  superseded_by: uuid nullable
+  created_at: timestamptz
+  updated_at: timestamptz
+  metadata: jsonb
+
+joinTables:
+  - name: finding_topic
+    columns: [finding_id, topic_id]
+    primaryKey: [finding_id, topic_id]
+  - name: finding_evidence
+    columns: [finding_id, evidence_id]
+    primaryKey: [finding_id, evidence_id]
+  - name: finding_citation
+    columns: [finding_id, citation_id]
+    primaryKey: [finding_id, citation_id]
+  - name: finding_metric
+    columns: [finding_id, metric_id]
+    primaryKey: [finding_id, metric_id]
+
+retention:
+  policy: forever
+  reason: Scientific findings are immutable records of expert judgement.
+
+partitioning:
+  strategy: by assessment_cycle
+  column: metadata->>'assessmentCycle'

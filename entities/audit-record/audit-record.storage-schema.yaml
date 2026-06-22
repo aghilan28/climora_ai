@@ -1,0 +1,29 @@
+entity: AuditRecord
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: false
+lineageMandatory: false
+
+primaryKey:
+  name: pk_audit_record
+  columns: [id]
+
+columns:
+  id: uuid
+  entity_id: uuid
+  action: varchar(200)
+  actor: varchar(200)
+  timestamp: timestamptz
+  reason: varchar(1000)
+  metadata: jsonb
+
+retention:
+  policy: regulatory
+  duration: "7 years"
+  reason: Audit records must be retained for compliance and scientific reproducibility.
+
+partitioning:
+  strategy: by month
+  column: timestamp

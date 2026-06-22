@@ -1,0 +1,56 @@
+entity: VersionRecord
+nodeLabel: VersionRecord
+nodeIdentifier: id
+entityId: ONT-013
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  entityType:
+    type: string
+    graphType: string
+    index: true
+  entityId:
+    type: string
+    graphType: uuid
+    index: true
+  versionNumber:
+    type: string
+    graphType: string
+  previousVersion:
+    type: string
+    graphType: string
+  changeReason:
+    type: string
+    graphType: text
+  createdBy:
+    type: string
+    graphType: string
+  createdAt:
+    type: string
+    graphType: datetime
+    index: true
+  payloadHash:
+    type: string
+    graphType: string
+
+relationships:
+  VERSION_OF:
+    target: "*"
+    cardinality: N:1
+    direction: OUTGOING
+    required: true
+  SUPERSEDES:
+    target: VersionRecord
+    cardinality: 1:1
+    direction: OUTGOING
+    required: false
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: entityId

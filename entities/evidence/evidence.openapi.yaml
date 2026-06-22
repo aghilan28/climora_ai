@@ -1,0 +1,78 @@
+components:
+  schemas:
+    Evidence:
+      type: object
+      x-entity: Evidence
+      x-entity-id: ONT-002
+      required:
+        - id
+        - type
+        - description
+        - findingId
+        - citationIds
+        - provenanceId
+        - sourceType
+        - evidenceStrength
+        - validationStatus
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        type:
+          $ref: '../../openapi/components.yaml#/components/schemas/EvidenceType'
+        description:
+          type: string
+          minLength: 20
+          maxLength: 3000
+        findingId:
+          type: string
+          format: uuid
+        citationIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+        provenanceId:
+          type: string
+          format: uuid
+        sourceType:
+          $ref: '../../openapi/components.yaml#/components/schemas/SourceType'
+        evidenceStrength:
+          $ref: '../../openapi/components.yaml#/components/schemas/EvidenceStrength'
+        validationStatus:
+          $ref: '../../openapi/components.yaml#/components/schemas/ValidationStatus'
+        metadata:
+          $ref: '#/components/schemas/EvidenceMetadata'
+
+    EvidenceMetadata:
+      type: object
+      properties:
+        geographicScope:
+          type: string
+        temporalCoverage:
+          type: string
+        instrument:
+          type: string
+        processingMethod:
+          type: string
+        qualityFlags:
+          type: array
+          items:
+            type: string
+
+    EvidenceInput:
+      allOf:
+        - $ref: '#/components/schemas/Evidence'
+      required:
+        - type
+        - description
+        - findingId
+        - citationIds
+        - provenanceId
+        - sourceType
+        - evidenceStrength
+        - validationStatus
+        - metadata

@@ -1,0 +1,126 @@
+components:
+  schemas:
+    Finding:
+      type: object
+      x-entity: Finding
+      x-entity-id: ONT-001
+      required:
+        - id
+        - statement
+        - summary
+        - confidenceRating
+        - likelihoodRating
+        - dataNature
+        - baselinePeriod
+        - topicIds
+        - evidenceIds
+        - citationIds
+        - metricIds
+        - version
+        - createdAt
+        - updatedAt
+        - metadata
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        statement:
+          type: string
+          minLength: 10
+          maxLength: 5000
+        summary:
+          type: string
+          minLength: 10
+          maxLength: 1000
+        confidenceRating:
+          $ref: '../../openapi/components.yaml#/components/schemas/ConfidenceLevel'
+        likelihoodRating:
+          $ref: '../../openapi/components.yaml#/components/schemas/LikelihoodLevel'
+        dataNature:
+          $ref: '../../openapi/components.yaml#/components/schemas/DataNature'
+        baselinePeriod:
+          type: string
+          example: "1850-1900"
+        topicIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+        evidenceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+        citationIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+          minItems: 1
+        metricIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        version:
+          type: string
+          pattern: '^\d+\.\d+\.\d+$'
+          example: "1.0.0"
+        supersedes:
+          type: string
+          format: uuid
+          nullable: true
+        supersededBy:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        metadata:
+          $ref: '#/components/schemas/FindingMetadata'
+
+    FindingMetadata:
+      type: object
+      properties:
+        assessmentCycle:
+          type: string
+          example: "AR6"
+        chapterReference:
+          type: string
+          example: "WGI Chapter 2"
+        tags:
+          type: array
+          items:
+            type: string
+        curationNotes:
+          type: string
+        language:
+          type: string
+          minLength: 2
+          maxLength: 2
+          example: "en"
+
+    FindingInput:
+      allOf:
+        - $ref: '#/components/schemas/Finding'
+      required:
+        - statement
+        - summary
+        - confidenceRating
+        - likelihoodRating
+        - dataNature
+        - baselinePeriod
+        - topicIds
+        - evidenceIds
+        - citationIds
+        - version
+        - metadata

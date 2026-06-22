@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://climora.ai/schemas/provenance-record.json",
+  "title": "ProvenanceRecord",
+  "description": "A trace of data origin, transformation, validation, storage, and audit history.",
+  "type": "object",
+  "required": ["id", "originSource", "transformationHistory", "validationHistory", "storageHistory", "auditHistory"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "originSource": { "type": "string", "minLength": 5, "maxLength": 500 },
+    "transformationHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "actor", "timestamp"],
+        "properties": {
+          "action": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "actor": { "type": "string", "minLength": 1, "maxLength": 200 },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "details": { "type": "object" }
+        }
+      }
+    },
+    "validationHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "actor", "timestamp"],
+        "properties": {
+          "action": { "type": "string" },
+          "actor": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "details": { "type": "object" }
+        }
+      }
+    },
+    "storageHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "actor", "timestamp"],
+        "properties": {
+          "action": { "type": "string" },
+          "actor": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "details": { "type": "object" }
+        }
+      }
+    },
+    "auditHistory": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "actor", "timestamp"],
+        "properties": {
+          "action": { "type": "string" },
+          "actor": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "details": { "type": "object" }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

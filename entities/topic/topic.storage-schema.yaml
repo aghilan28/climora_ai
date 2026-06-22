@@ -1,0 +1,35 @@
+entity: Topic
+storageType: relational
+appendOnly: true
+softDelete: false
+versionMandatory: false
+auditMandatory: true
+lineageMandatory: false
+
+primaryKey:
+  name: pk_topic
+  columns: [id]
+
+uniqueConstraints:
+  - name: uq_topic_slug
+    columns: [slug]
+
+foreignKeys:
+  - name: fk_topic_parent
+    columns: [parent_topic_id]
+    references: topic(id)
+    onDelete: RESTRICT
+
+columns:
+  id: uuid
+  name: varchar(200)
+  slug: varchar(200)
+  description: text
+  parent_topic_id: uuid nullable
+  hierarchy_level: integer
+  taxonomy_path: varchar(500)
+  metadata: jsonb
+
+retention:
+  policy: forever
+  reason: Topics define the stable taxonomy of the knowledge system.

@@ -1,0 +1,26 @@
+entity: ProvenanceRecord
+nodeLabel: ProvenanceRecord
+nodeIdentifier: id
+entityId: ONT-016
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  originSource:
+    type: string
+    graphType: string
+    index: fulltext
+
+relationships:
+  DESCRIBES:
+    target: "*"
+    cardinality: 1:1
+    direction: OUTGOING
+    required: true
+
+constraints:
+  - type: unique
+    property: id

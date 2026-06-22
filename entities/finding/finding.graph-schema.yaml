@@ -1,0 +1,98 @@
+entity: Finding
+nodeLabel: Finding
+nodeIdentifier: id
+entityId: ONT-001
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  statement:
+    type: string
+    graphType: text
+    index: fulltext
+  summary:
+    type: string
+    graphType: text
+  confidenceRating:
+    type: string
+    graphType: enum
+    enum: [VeryLow, Low, Medium, High, VeryHigh]
+    index: true
+  likelihoodRating:
+    type: string
+    graphType: enum
+    enum:
+      [ExceptionallyUnlikely, VeryUnlikely, Unlikely, AboutAsLikelyAsNot, Likely, VeryLikely, VirtuallyCertain]
+    index: true
+  dataNature:
+    type: string
+    graphType: enum
+    enum: [Observed, Modeled, Projected, Derived]
+    index: true
+  baselinePeriod:
+    type: string
+    graphType: string
+  version:
+    type: string
+    graphType: string
+    index: true
+  createdAt:
+    type: string
+    graphType: datetime
+    index: true
+  updatedAt:
+    type: string
+    graphType: datetime
+
+relationships:
+  SUPPORTED_BY:
+    target: Evidence
+    cardinality: 1:N
+    direction: OUTGOING
+    required: true
+  BELONGS_TO:
+    target: Topic
+    cardinality: 1:N
+    direction: OUTGOING
+    required: true
+  CITES:
+    target: Citation
+    cardinality: 1:N
+    direction: OUTGOING
+    required: true
+    via: evidence
+  QUANTIFIES:
+    target: Metric
+    cardinality: 1:N
+    direction: INCOMING
+    required: false
+  SUPERSEDES:
+    target: Finding
+    cardinality: 1:1
+    direction: OUTGOING
+    required: false
+    properties:
+      reason: string
+      supersededAt: datetime
+  CONTRASTS_WITH:
+    target: DissentRecord
+    cardinality: 1:N
+    direction: INCOMING
+    required: false
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: statement
+  - type: exists
+    property: confidenceRating
+
+indexes:
+  - type: fulltext
+    properties: [statement, summary]
+  - type: range
+    properties: [confidenceRating, likelihoodRating, createdAt]

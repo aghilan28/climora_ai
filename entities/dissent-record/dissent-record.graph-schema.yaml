@@ -1,0 +1,51 @@
+entity: DissentRecord
+nodeLabel: DissentRecord
+nodeIdentifier: id
+entityId: ONT-017
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  findingId:
+    type: string
+    graphType: uuid
+    index: true
+  statement:
+    type: string
+    graphType: text
+    index: fulltext
+  confidenceRating:
+    type: string
+    graphType: enum
+    enum: [VeryLow, Low, Medium, High, VeryHigh]
+  status:
+    type: string
+    graphType: enum
+    enum: [Active, Resolved, Superseded, Withdrawn]
+    index: true
+
+relationships:
+  CONTRASTS_WITH:
+    target: Finding
+    cardinality: N:1
+    direction: OUTGOING
+    required: true
+  CITES:
+    target: Citation
+    cardinality: 1:N
+    direction: OUTGOING
+    required: true
+  SUPPORTED_BY:
+    target: Evidence
+    cardinality: 1:N
+    direction: OUTGOING
+    required: true
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: statement

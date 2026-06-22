@@ -1,0 +1,58 @@
+entity: Citation
+nodeLabel: Citation
+nodeIdentifier: id
+entityId: ONT-003
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  title:
+    type: string
+    graphType: text
+    index: fulltext
+  authors:
+    type: array
+    graphType: string[]
+  year:
+    type: number
+    graphType: integer
+    index: true
+  citationType:
+    type: string
+    graphType: enum
+    enum: [Journal, Book, Report, Dataset, GovernmentDocument, ConferencePaper]
+    index: true
+  doi:
+    type: string
+    graphType: string
+    index: true
+  url:
+    type: string
+    graphType: string
+
+relationships:
+  CITED_BY:
+    target: Finding
+    cardinality: N:M
+    direction: INCOMING
+    required: false
+  CITED_BY:
+    target: Evidence
+    cardinality: N:M
+    direction: INCOMING
+    required: false
+
+constraints:
+  - type: unique
+    property: id
+  - type: exists
+    property: title
+
+indexes:
+  - type: fulltext
+    properties: [title]
+  - type: range
+    properties: [year]

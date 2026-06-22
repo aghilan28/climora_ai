@@ -1,0 +1,69 @@
+entity: Topic
+nodeLabel: Topic
+nodeIdentifier: id
+entityId: ONT-004
+
+properties:
+  id:
+    type: string
+    graphType: uuid
+    index: true
+    unique: true
+  name:
+    type: string
+    graphType: string
+    index: true
+  slug:
+    type: string
+    graphType: string
+    index: true
+    unique: true
+  description:
+    type: string
+    graphType: text
+    index: fulltext
+  hierarchyLevel:
+    type: number
+    graphType: integer
+    index: true
+  taxonomyPath:
+    type: string
+    graphType: string
+    index: true
+
+relationships:
+  CHILD_OF:
+    target: Topic
+    cardinality: N:1
+    direction: OUTGOING
+    required: false
+  PARENT_OF:
+    target: Topic
+    cardinality: 1:N
+    direction: INCOMING
+    required: false
+  HAS_FINDING:
+    target: Finding
+    cardinality: 1:N
+    direction: INCOMING
+    required: false
+  RELATES_TO:
+    target: Topic
+    cardinality: N:M
+    direction: OUTGOING
+    required: false
+    properties:
+      relationshipType: string
+      weight: float
+
+constraints:
+  - type: unique
+    property: id
+  - type: unique
+    property: slug
+  - type: exists
+    property: name
+
+indexes:
+  - type: fulltext
+    properties: [name, description]

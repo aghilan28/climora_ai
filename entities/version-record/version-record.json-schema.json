@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://climora.ai/schemas/version-record.json",
+  "title": "VersionRecord",
+  "description": "A record of an entity's evolution over time.",
+  "type": "object",
+  "required": ["id", "entityType", "entityId", "versionNumber", "changeReason", "createdBy", "createdAt"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "entityType": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "entityId": { "type": "string", "format": "uuid" },
+    "versionNumber": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "previousVersion": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "changeReason": { "type": "string", "minLength": 10, "maxLength": 2000 },
+    "createdBy": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "payloadHash": { "type": "string" },
+    "payloadSnapshot": { "type": "object" }
+  },
+  "additionalProperties": false
+}

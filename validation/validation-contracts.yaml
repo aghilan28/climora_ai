@@ -1,0 +1,132 @@
+validationContracts:
+  version: "1.0.0"
+
+  categories:
+    - name: SchemaValidation
+      engine: [Zod, JSONSchema, OpenAPI]
+      appliesTo: "*"
+
+    - name: OntologyValidation
+      engine: OntologyEngine
+      appliesTo: [Finding, Evidence, Citation, Topic, Metric, DissentRecord]
+
+    - name: RelationshipValidation
+      engine: GraphEngine
+      appliesTo: [Finding, Evidence, Citation, Topic, Metric, DissentRecord]
+
+    - name: ConfidenceValidation
+      engine: ApplicationLayer
+      appliesTo: [Finding, DissentRecord]
+
+    - name: LikelihoodValidation
+      engine: ApplicationLayer
+      appliesTo: [Finding]
+
+    - name: CitationValidation
+      engine: ApplicationLayer
+      appliesTo: [Citation]
+
+    - name: EvidenceValidation
+      engine: ApplicationLayer
+      appliesTo: [Evidence]
+
+    - name: MetricValidation
+      engine: ApplicationLayer
+      appliesTo: [Metric]
+
+    - name: ProvenanceValidation
+      engine: ApplicationLayer
+      appliesTo: [ProvenanceRecord, Evidence, Metric]
+
+    - name: VersionValidation
+      engine: ApplicationLayer
+      appliesTo: [Finding, Evidence, Metric, DissentRecord, VersionRecord]
+
+    - name: GraphValidation
+      engine: GraphEngine
+      appliesTo: "*"
+
+  rules:
+    - id: VAL-001
+      category: SchemaValidation
+      target: Finding
+      field: statement
+      rule: required
+      severity: error
+
+    - id: VAL-002
+      category: ConfidenceValidation
+      target: Finding
+      field: confidenceRating
+      rule: enum(ConfidenceLevel)
+      severity: error
+
+    - id: VAL-003
+      category: LikelihoodValidation
+      target: Finding
+      field: likelihoodRating
+      rule: enum(LikelihoodLevel)
+      severity: error
+
+    - id: VAL-004
+      category: RelationshipValidation
+      target: Finding
+      relation: SUPPORTED_BY
+      rule: min(1)
+      severity: error
+
+    - id: VAL-005
+      category: RelationshipValidation
+      target: Finding
+      relation: BELONGS_TO
+      rule: min(1)
+      severity: error
+
+    - id: VAL-006
+      category: RelationshipValidation
+      target: Finding
+      relation: CITES
+      rule: min(1)
+      severity: error
+
+    - id: VAL-007
+      category: VersionValidation
+      target: Finding
+      field: version
+      rule: semver
+      severity: error
+
+    - id: VAL-008
+      category: EvidenceValidation
+      target: Evidence
+      field: validationStatus
+      rule: stateMachine(ValidationStatusTransitions)
+      severity: error
+
+    - id: VAL-009
+      category: CitationValidation
+      target: Citation
+      field: doi
+      rule: unique
+      severity: error
+
+    - id: VAL-010
+      category: MetricValidation
+      target: Metric
+      field: value
+      rule: finite
+      severity: error
+
+    - id: VAL-011
+      category: GraphValidation
+      target: Finding
+      relation: SUPERSEDES
+      rule: acyclic
+      severity: error
+
+    - id: VAL-012
+      category: ProvenanceValidation
+      target: Evidence
+      field: provenanceId
+      rule: exists
+      severity: error
